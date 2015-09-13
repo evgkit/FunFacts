@@ -4,10 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 public class FunFactsActivity extends AppCompatActivity {
+    private FactBook mFactBook = new FactBook();
+    private ColorWheel mColorWheel = new ColorWheel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,15 +18,21 @@ public class FunFactsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fun_facts);
 
         // Declare view variables and assign them from layout
+        final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         final TextView factLabel = (TextView) findViewById(R.id.factTextView);
-        Button showFactBtn = (Button) findViewById(R.id.showFactButton);
+        final Button showFactBtn = (Button) findViewById(R.id.showFactButton);
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                factLabel.setText(new FactBook().getFact());
+                int color = mColorWheel.getColor();
+                relativeLayout.setBackgroundColor(color);
+                showFactBtn.setTextColor(color);
+
+                factLabel.setText(mFactBook.getFact());
            }
         };
+
         showFactBtn.setOnClickListener(listener);
     }
 }

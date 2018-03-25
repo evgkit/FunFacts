@@ -26,20 +26,17 @@ public class FunFactsActivity extends AppCompatActivity {
         final TextView factLabel = (TextView) findViewById(R.id.factTextView);
         final Button showFactBtn = (Button) findViewById(R.id.showFactButton);
 
-        View.OnClickListener listener = new View.OnClickListener() {
+        showFactBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int color = mColorWheel.getColor();
                 relativeLayout.setBackgroundColor(color);
                 showFactBtn.setTextColor(color);
-
                 factLabel.setText(mFactBook.getFact());
-           }
-        };
+            }
+        });
 
-        showFactBtn.setOnClickListener(listener);
-
-        // Toast.makeText(this, "WOW! LOL!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "WOW! LOL!", Toast.LENGTH_LONG).show();
 
         Log.d(TAG, "Hello from logging in onCreate() method!");
     }
